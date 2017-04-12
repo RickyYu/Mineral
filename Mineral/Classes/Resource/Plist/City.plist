@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>宁波市</key>
+	<array>
+		<string>余姚</string>
+		<string>慈溪</string>
+		<string>奉化</string>
+		<string>宁海</string>
+		<string>象山</string>
+		<string>鄞州</string>
+		<string>海曙</string>
+		<string>江北</string>
+		<string>镇海</string>
+		<string>北仑</string>
+		<string>大榭</string>
+		<string>高新区</string>
+		<string>保税区</string>
+		<string>东钱湖</string>
+		<string>杭州湾</string>
+		<string>石化区</string>
+		<string>物流区</string>
+		<string>其他</string>
+	</array>
+</dict>
+</plist>

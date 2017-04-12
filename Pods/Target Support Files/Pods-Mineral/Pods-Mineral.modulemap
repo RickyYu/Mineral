@@ -1,0 +1,6 @@
+framework module Pods_Mineral {
+  umbrella header "Pods-Mineral-umbrella.h"
+
+  export *
+  module * { export * }
+}

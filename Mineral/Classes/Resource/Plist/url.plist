@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>BASE_URL_YH</key>
+	<string>http://192.168.2.224:8005/nbsxs</string>
+	<key>LOGIN</key>
+	<string>/app/user/login.sj</string>
+	<key>DELETE_SALE_RECORD</key>
+	<string>/app/saleRecord/deleteSaleRecord.sj</string>
+	<key>GET_COMPANY_INFO</key>
+	<string>/app/company/info.sj</string>
+	<key>SAVE_SALE_RECORDS</key>
+	<string>/app/saleRecord/save.sj</string>
+	<key>UPDATE_PASSWORD</key>
+	<string>/app/user/updatePassword.sj</string>
+	<key>GET_RECORD_INFO</key>
+	<string>/app/saleRecord/info.sj</string>
+	<key>GET_RECORD_LIST</key>
+	<string>/app/saleRecord/list.sj</string>
+	<key>UPDATE_CPY_INFO</key>
+	<string>/app/company/update.sj</string>
+	<key>GET_RECORD_COUNT</key>
+	<string>/app/saleRecord/saleRecordCount.sj</string>
+</dict>
+</plist>

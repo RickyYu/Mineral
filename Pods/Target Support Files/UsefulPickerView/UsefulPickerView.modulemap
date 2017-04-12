@@ -1,0 +1,6 @@
+framework module UsefulPickerView {
+  umbrella header "UsefulPickerView-umbrella.h"
+
+  export *
+  module * { export * }
+}
