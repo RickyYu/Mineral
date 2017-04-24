@@ -4,23 +4,23 @@
 <dict>
 	<key>宁波市</key>
 	<array>
-		<string>余姚</string>
-		<string>慈溪</string>
-		<string>奉化</string>
-		<string>宁海</string>
-		<string>象山</string>
-		<string>鄞州</string>
-		<string>海曙</string>
-		<string>江北</string>
-		<string>镇海</string>
-		<string>北仑</string>
-		<string>大榭</string>
-		<string>高新区</string>
-		<string>保税区</string>
-		<string>东钱湖</string>
-		<string>杭州湾</string>
-		<string>石化区</string>
-		<string>物流区</string>
+		<string>余姚市</string>
+		<string>慈溪市</string>
+		<string>奉化市</string>
+		<string>宁海县</string>
+		<string>象山县</string>
+		<string>鄞州区</string>
+		<string>海曙区</string>
+		<string>江北区</string>
+		<string>镇海区</string>
+		<string>北仑区</string>
+		<string>宁波大榭开发区</string>
+		<string>宁波国家高新区</string>
+		<string>宁波保税区</string>
+		<string>宁波市东钱湖旅游度假区</string>
+		<string>杭州湾新区</string>
+		<string>宁波石化开发区</string>
+		<string>宁波机场与物流园区</string>
 		<string>其他</string>
 	</array>
 </dict>

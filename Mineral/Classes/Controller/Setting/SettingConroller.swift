@@ -10,10 +10,10 @@ import UIKit
 
 class SettingConroller: BaseViewController {
     @IBOutlet weak var lbName: UILabel!
-    @IBOutlet weak var lbVersion: UILabel!
     @IBOutlet weak var passView: UIView!
     @IBOutlet weak var lbCache: UILabel!
     var navBarHairlineImageView :UIImageView!
+    
     override func viewDidLoad() {
         setNavagation("设置")
        
@@ -39,9 +39,7 @@ class SettingConroller: BaseViewController {
         if AppTools.isExisNSUserDefaultsKey("userName"){
             lbName.text=AppTools.loadNSUserDefaultsValue("userName") as? String
         }
-      lbVersion.text = "V"+getVersion()
       lbCache.text = "已使用"+String(self.fileSizeOfCache())+"M"
-    
     }
     
     /**
@@ -86,8 +84,86 @@ class SettingConroller: BaseViewController {
         }
     }
     
-    @IBAction func update(sender: AnyObject) {
-        self.showHint("当前已是最新版本", duration: 2.0, yOffset: 2.0)
+//    @IBAction func update(sender: AnyObject) {
+//        let parameters = [String : AnyObject]()
+// 
+//        NetworkTool.sharedTools.getVersion(parameters) { (data, error) in
+//            if error == nil {
+//                self.compareVersion(self.getVersion(),storeVersion: data)
+//            }else{
+//            self.showHint("当前已是最新版本", duration: 2.0, yOffset: 2.0)
+//            }
+//
+//        }
+//    }
+    
+    
+    func up(){
+    
+        let path = NSString(format: "http://itunes.apple.com/cn/lookup?id=%@", APPSTOR_ID) as String
+        
+        // AppStore地址(URL)
+         let url = NSURL(string: path)
+        
+        // 配置网络请求参数
+         let request = NSMutableURLRequest(URL: url!, cachePolicy: NSURLRequestCachePolicy.ReloadIgnoringLocalCacheData, timeoutInterval: 10.0)
+        request.HTTPMethod = "POST"
+        // 开始网络请求
+        NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue()) { (response, data, error) in
+            
+            // 声明获取的数据字典
+            let receiveStatusDic = NSMutableDictionary()
+            
+            if data != nil {
+                
+                do {
+                    // JSON解析data
+                    let dic = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers)
+                    
+                    // 取出版本号
+                    // 判断是否resultCount为空
+                    if let resultCount = dic["resultCount"] as? NSNumber {
+                        
+                        // 判断resultCount的数量是否大于0
+                        if resultCount.integerValue > 0 {
+                            
+                            // 设置请求状态(1代表成功，0代表失败)
+                            receiveStatusDic.setValue("1", forKey: "status")
+                            
+                            // 判断results是否为空
+                            if let arr = dic["results"] as? NSArray {
+                                
+                                if let dict = arr.firstObject as? NSDictionary {
+                                    
+                                    // 取出version
+                                    if let version = dict["version"] as? String {
+                                        
+                                        receiveStatusDic.setValue(version, forKey: "version")
+                                        
+                                        // 存网络版本号到UserDefaults里面
+                                        NSUserDefaults.standardUserDefaults().setObject(version, forKey: "Version")
+                                        
+                                        NSUserDefaults.standardUserDefaults().synchronize()
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }catch let error {
+                    
+                    print("checkUpdate -------- \(error)")
+                    
+                    receiveStatusDic.setValue("0", forKey: "status")
+                }
+            }else {
+                
+                receiveStatusDic.setValue("0", forKey: "status")
+            }
+            
+            // 取出版本号后(若有则status为1，若没有则status为0)，执行方法
+//            self.performSelectorOnMainThread(#selector(self.checkUpdateWithData(_:)), withObject: receiveStatusDic, waitUntilDone: false)
+        }
+        
     }
     
     

@@ -70,6 +70,7 @@
 		9C7975421E7244C400AA82A8 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7975401E7244C400AA82A8 /* User.swift */; };
 		9C9DA8821E9B1AFC0051CAF2 /* PwdSettingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C9DA8811E9B1AFC0051CAF2 /* PwdSettingController.swift */; };
 		9C9DA8841E9B2D840051CAF2 /* PwdSettingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C9DA8831E9B2D840051CAF2 /* PwdSettingModel.swift */; };
+		9CADABAE1EA457770090DA39 /* nbyhpc_area.xml in Resources */ = {isa = PBXBuildFile; fileRef = 9CADABAD1EA457770090DA39 /* nbyhpc_area.xml */; };
 		9CC2EADA1E8B829900448E6D /* ShopInfoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CC2EAD91E8B829900448E6D /* ShopInfoController.swift */; };
 		9CC2EADC1E8B839F00448E6D /* ShopInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CC2EADB1E8B839F00448E6D /* ShopInfoCell.swift */; };
 		9CC2EADE1E8B83AD00448E6D /* ShopInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CC2EADD1E8B83AD00448E6D /* ShopInfoCell.xib */; };
@@ -79,12 +80,9 @@
 		9CC44D381E7A6EF100A23FFD /* SettingConroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CC44D371E7A6EF100A23FFD /* SettingConroller.swift */; };
 		9CC44D3A1E7A760600A23FFD /* DetailCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CC44D391E7A760600A23FFD /* DetailCellView.swift */; };
 		9CC44D3C1E7BBD4800A23FFD /* ModifyPwdController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CC44D3B1E7BBD4800A23FFD /* ModifyPwdController.swift */; };
-		9CC44D3E1E7BD2CE00A23FFD /* TestShopInfoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CC44D3D1E7BD2CE00A23FFD /* TestShopInfoController.swift */; };
-		9CC44D401E7BD85000A23FFD /* TestRealNameRegController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CC44D3F1E7BD85000A23FFD /* TestRealNameRegController.swift */; };
 		9CC44D421E7BDC3900A23FFD /* SaleRecordsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CC44D411E7BDC3900A23FFD /* SaleRecordsCell.xib */; };
 		9CC44D441E7BDDC500A23FFD /* SaleRecordsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CC44D431E7BDDC500A23FFD /* SaleRecordsCell.swift */; };
 		9CC44D461E7FC1CD00A23FFD /* ShopInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CC44D451E7FC1CD00A23FFD /* ShopInfoModel.swift */; };
-		9CC44D481E80F0D900A23FFD /* nbyhpc_area.xml in Resources */ = {isa = PBXBuildFile; fileRef = 9CC44D471E80F0D900A23FFD /* nbyhpc_area.xml */; };
 		9CC60F161E820AB20059FF14 /* SaleRecordModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CC60F151E820AB20059FF14 /* SaleRecordModel.swift */; };
 		9CC60F181E8215410059FF14 /* RecentSaleRecordsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CC60F171E8215410059FF14 /* RecentSaleRecordsCell.swift */; };
 		9CC60F1A1E82156A0059FF14 /* RecentSaleRecordsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CC60F191E82156A0059FF14 /* RecentSaleRecordsCell.xib */; };
@@ -186,6 +184,7 @@
 		9C7975401E7244C400AA82A8 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		9C9DA8811E9B1AFC0051CAF2 /* PwdSettingController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PwdSettingController.swift; sourceTree = "<group>"; };
 		9C9DA8831E9B2D840051CAF2 /* PwdSettingModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PwdSettingModel.swift; sourceTree = "<group>"; };
+		9CADABAD1EA457770090DA39 /* nbyhpc_area.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = nbyhpc_area.xml; sourceTree = "<group>"; };
 		9CC2EAD91E8B829900448E6D /* ShopInfoController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopInfoController.swift; sourceTree = "<group>"; };
 		9CC2EADB1E8B839F00448E6D /* ShopInfoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopInfoCell.swift; sourceTree = "<group>"; };
 		9CC2EADD1E8B83AD00448E6D /* ShopInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShopInfoCell.xib; sourceTree = "<group>"; };
@@ -195,12 +194,9 @@
 		9CC44D371E7A6EF100A23FFD /* SettingConroller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingConroller.swift; sourceTree = "<group>"; };
 		9CC44D391E7A760600A23FFD /* DetailCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailCellView.swift; sourceTree = "<group>"; };
 		9CC44D3B1E7BBD4800A23FFD /* ModifyPwdController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModifyPwdController.swift; sourceTree = "<group>"; };
-		9CC44D3D1E7BD2CE00A23FFD /* TestShopInfoController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestShopInfoController.swift; sourceTree = "<group>"; };
-		9CC44D3F1E7BD85000A23FFD /* TestRealNameRegController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestRealNameRegController.swift; sourceTree = "<group>"; };
 		9CC44D411E7BDC3900A23FFD /* SaleRecordsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SaleRecordsCell.xib; sourceTree = "<group>"; };
 		9CC44D431E7BDDC500A23FFD /* SaleRecordsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaleRecordsCell.swift; sourceTree = "<group>"; };
 		9CC44D451E7FC1CD00A23FFD /* ShopInfoModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopInfoModel.swift; sourceTree = "<group>"; };
-		9CC44D471E80F0D900A23FFD /* nbyhpc_area.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = nbyhpc_area.xml; sourceTree = "<group>"; };
 		9CC60F151E820AB20059FF14 /* SaleRecordModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaleRecordModel.swift; sourceTree = "<group>"; };
 		9CC60F171E8215410059FF14 /* RecentSaleRecordsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecentSaleRecordsCell.swift; sourceTree = "<group>"; };
 		9CC60F191E82156A0059FF14 /* RecentSaleRecordsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecentSaleRecordsCell.xib; sourceTree = "<group>"; };
@@ -332,7 +328,7 @@
 				9C79743D1E71320E00AA82A8 /* RealNameReg */,
 				9C79743E1E71320E00AA82A8 /* SalesRecord */,
 				9C79743F1E71320E00AA82A8 /* Setting */,
-				9C7974401E71320E00AA82A8 /* StoreInfo */,
+				9C7974401E71320E00AA82A8 /* ShopInfo */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -369,7 +365,6 @@
 		9C79743D1E71320E00AA82A8 /* RealNameReg */ = {
 			isa = PBXGroup;
 			children = (
-				9CC44D3F1E7BD85000A23FFD /* TestRealNameRegController.swift */,
 				9C55FEFF1E83AFAE00C04507 /* RealNameRegController.swift */,
 			);
 			path = RealNameReg;
@@ -393,12 +388,12 @@
 			path = Setting;
 			sourceTree = "<group>";
 		};
-		9C7974401E71320E00AA82A8 /* StoreInfo */ = {
+		9C7974401E71320E00AA82A8 /* ShopInfo */ = {
 			isa = PBXGroup;
 			children = (
-				9CC44D3D1E7BD2CE00A23FFD /* TestShopInfoController.swift */,
 				9CC2EAD91E8B829900448E6D /* ShopInfoController.swift */,
 			);
+			name = ShopInfo;
 			path = StoreInfo;
 			sourceTree = "<group>";
 		};
@@ -638,7 +633,7 @@
 		9C7974811E71320E00AA82A8 /* Xml */ = {
 			isa = PBXGroup;
 			children = (
-				9CC44D471E80F0D900A23FFD /* nbyhpc_area.xml */,
+				9CADABAD1EA457770090DA39 /* nbyhpc_area.xml */,
 			);
 			path = Xml;
 			sourceTree = "<group>";
@@ -840,13 +835,13 @@
 				9C7974AB1E71320E00AA82A8 /* CODE LIGHT.OTF in Resources */,
 				9C7973DB1E712D9D00AA82A8 /* LaunchScreen.storyboard in Resources */,
 				9C7973D81E712D9D00AA82A8 /* Assets.xcassets in Resources */,
+				9CADABAE1EA457770090DA39 /* nbyhpc_area.xml in Resources */,
 				9C7974AF1E71320E00AA82A8 /* City.plist in Resources */,
 				9C7974AE1E71320E00AA82A8 /* Area.plist in Resources */,
 				9C7974971E71320E00AA82A8 /* PhotoAlbumTableViewCell.xib in Resources */,
 				9C7974991E71320E00AA82A8 /* photoCollectionViewCell.xib in Resources */,
 				9C7973D61E712D9D00AA82A8 /* Main.storyboard in Resources */,
 				9C7974B11E71320E00AA82A8 /* url.plist in Resources */,
-				9CC44D481E80F0D900A23FFD /* nbyhpc_area.xml in Resources */,
 				9C7974AD1E71320E00AA82A8 /* 方正兰亭纤黑简体.TTF in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -942,8 +937,6 @@
 				9C79748C1E71320E00AA82A8 /* OYConst.swift in Sources */,
 				9C7974A91E71320E00AA82A8 /* PlistTools.swift in Sources */,
 				9C7974A01E71320E00AA82A8 /* PhotoPickerController.swift in Sources */,
-				9CC44D3E1E7BD2CE00A23FFD /* TestShopInfoController.swift in Sources */,
-				9CC44D401E7BD85000A23FFD /* TestRealNameRegController.swift in Sources */,
 				9C79753A1E72403900AA82A8 /* Login.swift in Sources */,
 				9C79749F1E71320E00AA82A8 /* PhotoPickerConfig.swift in Sources */,
 				9CC2EAE41E8B9EB100448E6D /* BaseTextViewController.swift in Sources */,
@@ -1077,10 +1070,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "9f9e20cb-9d67-4811-b2d8-c3393714d7f2";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -1117,9 +1110,9 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "00e21044-b97f-48b6-a4af-c8836f366593";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1135,7 +1128,7 @@
 				INFOPLIST_FILE = Mineral/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = cn.safetys.Mineral;
+				PRODUCT_BUNDLE_IDENTIFIER = cn.safetys.MineralReg;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = Mineral/Classes/Mineral_Bridge.h;
@@ -1152,7 +1145,7 @@
 				INFOPLIST_FILE = Mineral/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = cn.safetys.Mineral;
+				PRODUCT_BUNDLE_IDENTIFIER = cn.safetys.MineralReg;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = Mineral/Classes/Mineral_Bridge.h;

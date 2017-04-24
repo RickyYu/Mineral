@@ -35,7 +35,7 @@ class SaleRecordsListController: BaseViewController,UITableViewDelegate,UITableV
     }
     
     func initView(){
-        self.navigationController?.navigationBar.setBackgroundImage(UIImage(named: "set_head.png"), forBarMetrics: UIBarMetrics.CompactPrompt)
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(named: "set_head.png"), forBarMetrics: .Default)
         // 设置tableview相关
         let nib = UINib(nibName: ReuseIdentifier,bundle: nil)
         self.table.registerNib(nib, forCellReuseIdentifier: ReuseIdentifier)
@@ -44,25 +44,23 @@ class SaleRecordsListController: BaseViewController,UITableViewDelegate,UITableV
         table.tableFooterView = UIView()
         table.delegate = self
         table.dataSource = self
-        sortByNum()
+//        sortByNum()
     }
     
     func sortByNum(){
-        isSortType = true
-        itemTime=UIBarButtonItem(title: "时间排序", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(self.sortByTime))
+        isSortType = false
+        itemTime=UIBarButtonItem(title: "数量排序", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(self.sortByTime))
         self.navigationItem.rightBarButtonItem=itemTime
         reSet()
         getRecordList()
-    
     }
     override func viewWillAppear(animated: Bool) {
-        reSet()
-        getRecordList()
+        sortByNum()
     }
     
     func sortByTime(){
-        isSortType = false
-        itemTime=UIBarButtonItem(title: "数量排序", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(self.sortByNum))
+        isSortType = true
+        itemTime=UIBarButtonItem(title: "时间排序", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(self.sortByNum))
         self.navigationItem.rightBarButtonItem=itemTime
         reSet()
         getRecordList()
@@ -80,7 +78,6 @@ class SaleRecordsListController: BaseViewController,UITableViewDelegate,UITableV
             if error == nil{
                 if self.currentPage>totalCount{
                     self.totalCount = totalCount!
-                        //self.showHint("已经到最后了", duration: 2, yOffset: 0)
                     self.currentPage -= PAGE_SIZE
                     return
                 }
@@ -126,7 +123,7 @@ class SaleRecordsListController: BaseViewController,UITableViewDelegate,UITableV
     
    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("RealNameRegController") as! RealNameRegController
-        controller.recordId = models[indexPath.row].id
+        controller.saleRecordModel = models[indexPath.row]
         table.deselectRowAtIndexPath(table.indexPathForSelectedRow!, animated: true)
         self.navigationController?.pushViewController(controller, animated: true)
     }

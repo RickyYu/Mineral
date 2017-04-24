@@ -19,20 +19,27 @@ class LoginViewController: BaseViewController{
     @IBOutlet weak var isRmbPasBtn: UIButton!
     @IBOutlet weak var loginBtn: UIButton!
     var isReLogin = false
-    
+    var oldUserName:String = ""
     
     ///记住密码标识符
     let LOGIN_RECORD_STATE: String = "loginRecordStatesMineral"
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+      // self.navigationController?.navigationBar.hidden = true
         self.initPage()
         //点击空白处隐藏键盘
         self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.resignEdit(_:))))
-        
         addNotification()
+       
+        if AppTools.isExisNSUserDefaultsKey("userName") {
+              oldUserName = AppTools.loadNSUserDefaultsValue("userName") as! String
+        }
         
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        // self.navigationController?.navigationBar.hidden = true
     }
     
     override func resignEdit(sender: UITapGestureRecognizer) {
@@ -43,12 +50,10 @@ class LoginViewController: BaseViewController{
         sender.cancelsTouchesInView = false
     }
     
-
-    
     @IBAction func login(sender: UIButton) {
       //  self.reloadData()
-        let userName = userNameField.text!
-        let passWord = passWordField.text!
+        let userName = trimSpace(userNameField.text!)
+        let passWord = trimSpace(passWordField.text!)
      
         if AppTools.isEmpty(userName) {
             alert("请输入您的用户名!", handler: {
@@ -74,10 +79,10 @@ class LoginViewController: BaseViewController{
     
     ///后台登录验证
     func loginValidate(userName: String, password: String) {
-
+        
         var parameters = [String : AnyObject]()
-        parameters["username"] = trimSpace(userName)
-        parameters["password"] = trimSpace(password)
+        parameters["username"] = userName
+        parameters["password"] = password
         parameters["type"] = TYPE_CODE
         
         NetworkTool.sharedTools.login(parameters) { (login, error) in
@@ -89,25 +94,31 @@ class LoginViewController: BaseViewController{
                     AppTools.setNSUserDefaultsClassValue("login", login!)
                     AppTools.setNSUserDefaultsClassValue("user", user)
                     AppTools.setNSUserDefaultsValue("identify", (login?.identify)!)
-                   self.performSegueWithIdentifier("toMain", sender: self)
+                    if self.oldUserName != userName {
+                        let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("ShopInfoController") as! ShopInfoController
+                        controller.isSave = true
+                        let  navShopInfoController = UINavigationController(rootViewController:controller)
+                        self.presentViewController(navShopInfoController, animated: true, completion: nil)
+                    }else {
+                        
+                        let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("MainController") as! MainController
+                        let  navShopInfoController = UINavigationController(rootViewController:controller)
+                        self.presentViewController(navShopInfoController, animated: true, completion: nil)
+//                        self.performSegueWithIdentifier("toMain", sender: self)
+                    }
                 }else{
                     self.alert((login?.msg)!)
                     self.passWordField.text = ""
                 }
-            
+                
             }else{
-                if error == NOTICE_SECURITY_NAME {
-                    self.toLogin()
-                }else{
-                    self.showHint(error, duration: 2.0, yOffset: 2.0)
-                }
+                self.showHint(error, duration: 2.0, yOffset: 2.0)
+                
             }
         }
-  
+        
     }
-    
-    
-    
+
     @IBAction func rmbPas(sender: UIButton) {
         self.setCheckboxBtnImage();
     }

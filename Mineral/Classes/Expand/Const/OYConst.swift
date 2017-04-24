@@ -9,7 +9,7 @@
 import UIKit
 
 
-let APPSTOR_ID = "id444934666"
+let APPSTOR_ID = "1228027147"
 //(1松香水，2烟花爆竹)
 let TYPE_CODE = "1"
 

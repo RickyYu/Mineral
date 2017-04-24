@@ -26,31 +26,33 @@ class NetworkTool: Alamofire.Manager {
     func getVersion(parameters:[String:AnyObject],finished: (data : String!, error: String!)->()) {
         SVProgressHUD.showWithStatus("正在加载...")
         let path = NSString(format: "http://itunes.apple.com/cn/lookup?id=%@", APPSTOR_ID) as String
-        self.sendPostRequest(path, parameters: parameters) { (response) in
-            
-            guard response!.result.isSuccess else {
-                SVProgressHUD.showErrorWithStatus("加载失败...")
-                finished(data:nil,error: "服务器异常")
+        let headers = [
+            "Accept-Language" : "zh-CN,zh;q=0.8,en;q=0.6"
+        ]
+
+        request(.POST, path, parameters: parameters, encoding: .URL, headers: headers).responseJSON(queue: dispatch_get_main_queue(), options: []){(response) in
+            guard response.result.isSuccess else {
+                SVProgressHUD.showErrorWithStatus(NOTICE_NETWORK_FAILED)
                 return
             }
-            if let dictValue = response!.result.value{
+            if let dictValue = response.result.value{
                 let dict = JSON(dictValue)
-                print("getCompanyInfo = \(dict)")
-                _ = dict["resultCount"].numberValue
-//                let results = dict["results"] as? NSArray
-//                if let dict = results!.firstObject as? NSDictionary {
-//                    if let version = dict["version"] as? String {
-//                    finished(data: version,error: nil) //success  false
+                print("getVersion = \(dict)")
+
+//                if let results = dict["results"].arrayObject {
+//                 if let dicts = results.firstObject as? NSDictionary {
+//                    if let version = dicts["version"] as? String {
+//                        finished(data: version,error: nil) //success  false
 //                    }
 //                }else{
-//                  finished(data: nil,error: "") //success  false
+//                    finished(data: nil,error: "") //success  false
 //                }
-
+//                }
+                finished(data: nil,error: "") //success  false
                 SVProgressHUD.dismiss()
             }else {
                 finished(data: nil,error: "数据异常")
             }
-            
         }
     }
 
@@ -146,7 +148,7 @@ class NetworkTool: Alamofire.Manager {
                             let homeItem = SalesCountModel(dict: item as! [String: AnyObject])
                             salesCountModels.append(homeItem)
                         }
-                        SalesCountModel.savaSalesCountModels(salesCountModels)
+//                        SalesCountModel.savaSalesCountModels(salesCountModels)
                         finished(data: salesCountModels,error: nil)
                     }
                     
@@ -391,4 +393,21 @@ class NetworkTool: Alamofire.Manager {
         }
 
      }
+    
+    func sendGetRequest(URL:String,parameters:[String:AnyObject],finished:(response:Response<AnyObject, NSError>!)->()){
+        let identify = AppTools.loadNSUserDefaultsValue("identify") as! String
+        var addParameters = parameters
+        addParameters["client"] = "ios"
+        let key = "SXS_FIREWORK_CLIENT_AUTH_KEY_2017="+identify
+        let headers = [
+            "Cookie": key,
+            "Accept-Language" : "zh-CN,zh;q=0.8,en;q=0.6"
+        ]
+        //"Content-Type": "application/json;charset=UTF-8"  加上此header报type不能为空
+        request(.GET, URL, parameters: addParameters, encoding: .URL, headers: headers).responseJSON(queue: dispatch_get_main_queue(), options: []){(response) in
+            finished(response: response)
+        }
+        
+    }
+    
     }

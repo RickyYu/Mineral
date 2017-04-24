@@ -8,7 +8,7 @@
 
 import UIKit
 private let ReuseIdentifier = "ShopInfoCell"
-class ShopInfoController: BaseViewController, UITableViewDelegate, UITableViewDataSource,NSXMLParserDelegate,ParameterDelegate{
+class ShopInfoController: BaseViewController, UITableViewDelegate, UITableViewDataSource,NSXMLParserDelegate,ParameterDelegate,MultiParameterDelegate{
     
     var cells: Dictionary<Int, [Cell]>? = [:]
     var shopInfoModel: ShopInfoModel! = nil
@@ -16,19 +16,21 @@ class ShopInfoController: BaseViewController, UITableViewDelegate, UITableViewDa
     var parse:NSXMLParser! = nil
     var dictArea:Dictionary<String,String> = ["1":"1"]
     var firstArea :String = "330200000000"
-    var secondArea :String!
-    var thirdArea :String!
+    var secondArea :String = ""
+    var thirdArea :String = ""
     var firstAreaName:String!
     var secondAreaName:String!
     var thirdAreaName:String!
     var secondAreaChoiceName:String = ""
     var thirdAreaChoiceName:String = ""
     let indexPaths: [NSIndexPath] = []
+    var isSave:Bool = false  //第一次进入该页面才有保存，之后都无法保存
     override func viewDidLoad() {
         setNavagation("门店基本信息")
-//      self.navigationController?.navigationBar.setBackgroundImage(UIImage(named: "set_head.png"), forBarMetrics: Default)
-        let item=UIBarButtonItem(title: "保存", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(self.updateInfo))
-        self.navigationItem.rightBarButtonItem=item
+
+         let item = UIBarButtonItem(title: "保存", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(self.updateInfo))
+         self.navigationItem.rightBarButtonItem=item
+
         self.shopInfoModel = ShopInfoModel(firstArea: 0)
         customTableView = getTableView()
         self.view.addSubview(customTableView)
@@ -43,6 +45,7 @@ class ShopInfoController: BaseViewController, UITableViewDelegate, UITableViewDa
         getData()
     }
 
+    
     func passParams(text: String,key:String,indexPaths: [NSIndexPath]) {
         shopInfoModel.setValue(text, forKey: key)
         self.cells = self.shopInfoModel.getCells()
@@ -53,12 +56,14 @@ class ShopInfoController: BaseViewController, UITableViewDelegate, UITableViewDa
         if (customTableView.indexPathForSelectedRow != nil) {
             customTableView.deselectRowAtIndexPath(customTableView.indexPathForSelectedRow!, animated: true)
         }
+        self.navigationController?.navigationBar
+                       .setBackgroundImage(UIImage(named: "set_head"), forBarMetrics: .Default)
+
     }
     
+ 
     
     func getData(){
-
-        
         let parameters = [String : AnyObject]()
         NetworkTool.sharedTools.getCompanyInfo(parameters) { (data, error) in
             if error == nil{
@@ -80,9 +85,9 @@ class ShopInfoController: BaseViewController, UITableViewDelegate, UITableViewDa
         self.secondArea = String(self.shopInfoModel.secondArea)
         self.thirdArea = String(self.shopInfoModel.thirdArea)
         self.parse.parse()
+        self.shopInfoModel.areaName = combinedString ?? data.areaName
         self.cells = self.shopInfoModel.getCells()
         self.customTableView.reloadData()
-
     }
     
     //返回几节(组)
@@ -129,6 +134,7 @@ class ShopInfoController: BaseViewController, UITableViewDelegate, UITableViewDa
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let cell = self.cells![indexPath.section]![indexPath.row]
+        customTableView.deselectRowAtIndexPath(customTableView.indexPathForSelectedRow!, animated: true)
         switch cell.state {
         case CellState.READ:
             break
@@ -143,20 +149,29 @@ class ShopInfoController: BaseViewController, UITableViewDelegate, UITableViewDa
             controller.delegate = self
             self.navigationController?.pushViewController(controller, animated: true)
         case .MULTI_TEXT:
-            self.showHint("test", duration: 1, yOffset: 1)
+            let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("BaseMultiTextController") as! BaseMultiTextController
+            controller.indexPaths = [indexPath]
+            controller.cell = cell
+            controller.delegate = self
+            self.navigationController?.pushViewController(controller, animated: true)
         }
     }
     
     func choiceArea(indexPath: [NSIndexPath]){
-     
+       if areaArr.count == 2 { areaArr.append(" ")}
         getChoiceArea(areaArr) { (area,areaArr) in
             self.secondAreaChoiceName = areaArr[1]
             self.thirdAreaChoiceName = areaArr[2]
             self.shopInfoModel.areaName = area
             self.cells = self.shopInfoModel.getCells()
             self.customTableView.reloadRowsAtIndexPaths(indexPath, withRowAnimation: .None)
-            self.secondArea = self.dictArea[self.secondAreaChoiceName]
-            self.thirdArea = self.dictArea[self.thirdAreaChoiceName]
+            self.secondArea = self.dictArea[self.secondAreaChoiceName] ?? ""
+            self.thirdArea = self.dictArea[self.thirdAreaChoiceName] ?? ""
+         
+            self.areaArr.removeAll()
+            self.areaArr.append("宁波市")
+            self.areaArr.append(self.secondAreaChoiceName)
+            self.areaArr.append(self.thirdAreaChoiceName)
         }
     }
     override func didReceiveMemoryWarning() {
@@ -169,7 +184,7 @@ class ShopInfoController: BaseViewController, UITableViewDelegate, UITableViewDa
     func getTableView() -> UITableView{
         
         if customTableView == nil{
-            customTableView = UITableView(frame: CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT), style: UITableViewStyle.Plain)
+            customTableView = UITableView(frame: CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT), style: UITableViewStyle.Plain)
             let nib = UINib(nibName: ReuseIdentifier,bundle: nil)
             self.customTableView.registerNib(nib, forCellReuseIdentifier: ReuseIdentifier)
             customTableView?.delegate = self
@@ -184,6 +199,7 @@ class ShopInfoController: BaseViewController, UITableViewDelegate, UITableViewDa
     }
     
     var areaArr = [String]()
+    var combinedString : String = ""
     // 监听解析节点的属性
     func parser(parser: NSXMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String]){
         let code = attributeDict["code"]!as String
@@ -202,6 +218,10 @@ class ShopInfoController: BaseViewController, UITableViewDelegate, UITableViewDa
             thirdAreaName = attributeDict["name"]! as String
             areaArr.append(thirdAreaName)
         }
+      
+        combinedString = areaArr.reduce("", combine: { (result, value) -> String in
+            result + " " + value
+        })
         
     }
     
@@ -269,7 +289,7 @@ class ShopInfoController: BaseViewController, UITableViewDelegate, UITableViewDa
             })
             return
         }
-        
+
         var parameters = [String : AnyObject]()
         parameters["companyName"] = strShopName
         parameters["businessRegNum"] = strBusinessRegNum
@@ -285,7 +305,11 @@ class ShopInfoController: BaseViewController, UITableViewDelegate, UITableViewDa
         NetworkTool.sharedTools.updateCpyInfo(parameters) { (login, error) in
             if error == nil{
                 self.showHint("保存成功！", duration: 1.0, yOffset: 1.0)
-                self.lastNavigationPage()
+//                self.navigationController?.pushViewController(MainController(), animated: false)
+                let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("MainController") as! MainController
+                let  navMainController = UINavigationController(rootViewController:controller)
+                self.presentViewController(navMainController, animated: true, completion: nil)
+//                self.lastNavigationPage()
             }else{
                 if error == NOTICE_SECURITY_NAME {
                     self.toLogin()

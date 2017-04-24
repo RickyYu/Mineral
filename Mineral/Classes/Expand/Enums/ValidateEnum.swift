@@ -14,9 +14,9 @@ enum ValidateEnum {
     case username(_: String)
     case password(_: String)
     case nickname(_: String)
-    
     case URL(_: String)
     case IP(_: String)
+    case cardNum(_: String)
     
     
     var isRight: Bool {
@@ -27,7 +27,7 @@ enum ValidateEnum {
             predicateStr = "^([a-z0-9_\\.-]+)@([\\da-z\\.-]+)\\.([a-z\\.]{2,6})$"
             currObject = str
         case let .phoneNum(str):
-            predicateStr = "^1[0-9]{10}$"
+            predicateStr = "^(1[0-9]{10})|([0-9]{7,8})|(0\\d{2,3}-\\d{5,9})$"
 //            "^((1[0-9]{10})|(15[^4,\\D]) |(17[0,0-9])|(18[0,0-9]))\\d{8}$"
             currObject = str
         case let .carNum(str):
@@ -37,7 +37,9 @@ enum ValidateEnum {
             predicateStr = "^[A-Za-z0-9]{6,20}+$"
             currObject = str
         case let .password(str):
-            predicateStr = "^[a-zA-Z0-9]{6,18}+$"
+            
+            predicateStr = "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{6,18}$"
+//                "^[a-zA-Z0-9]{6,18}+$"
             currObject = str
         case let .nickname(str):
             predicateStr = "^[\\u4e00-\\u9fa5]{4,8}$"
@@ -47,6 +49,10 @@ enum ValidateEnum {
             currObject = str
         case let .IP(str):
             predicateStr = "^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$"
+            currObject = str
+        case let .cardNum(str):
+            predicateStr = "^(\\d{18})|[0-9]{17}(x|X)$"
+//            "^(\\d{18})|([0-9]){17}(x|X)?$"
             currObject = str
         }
         

@@ -53,9 +53,9 @@ class MainController: BaseViewController{
     }
     
     func getRecords(){
-        if let array = SalesCountModel.loadLocalSalesCountModels() {
-            setData(array)
-        }
+//        if let array = SalesCountModel.loadLocalSalesCountModels() {
+//            setData(array)
+//        }
         
         var parameters = [String : AnyObject]()
         parameters["type"] = TYPE_CODE

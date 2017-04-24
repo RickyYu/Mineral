@@ -9,7 +9,7 @@
 import UIKit
 import UsefulPickerView
 private let ReuseIdentifier = "ShopInfoCell"
-class RealNameRegController: BaseViewController, UITableViewDelegate, UITableViewDataSource,ParameterDelegate {
+class RealNameRegController: BaseViewController, UITableViewDelegate, UITableViewDataSource,ParameterDelegate,MultiParameterDelegate {
     
     var cells: Dictionary<Int, [Cell]>? = [:]
     var saleRecordModel:SaleRecordModel!
@@ -24,71 +24,86 @@ class RealNameRegController: BaseViewController, UITableViewDelegate, UITableVie
     var credentialType:String = "ID_CARD"
      let singleData = ["护照","身份证", "驾驶证", ]
     override func viewDidLoad() {
-         setNavagation("销售实名登记")
-        self.view.backgroundColor = UIColor.whiteColor()
+       setNavagation("销售实名登记")
         customTableView = getTableView()
         self.view.addSubview(customTableView)
-        self.saleRecordModel = SaleRecordModel(credentialsName: "身份证")
-        self.cells = saleRecordModel.getCells()
-        self.customTableView.reloadData()
-        
-        submitBtn.setTitle("删除", forState:.Normal)
-        submitBtn.backgroundColor = UIColor.redColor()
-        submitBtn.setTitleColor(UIColor.greenColor(), forState: .Highlighted) //触摸状态下文字的颜色
-        submitBtn.addTarget(self, action: #selector(self.deleteRecord), forControlEvents: UIControlEvents.TouchUpInside)
-        self.view.addSubview(submitBtn)
-        submitBtn.snp_makeConstraints { make in
-            make.bottom.equalTo(self.view.snp_bottom).offset(-30)
-            make.left.equalTo(self.view.snp_left).offset(50)
-            make.size.equalTo(CGSizeMake(SCREEN_WIDTH-100, 35))
+        if saleRecordModel == nil {
+            self.saleRecordModel = SaleRecordModel(credentialsName: "身份证")
         }
         
-        if recordId != -1 {
+        if saleRecordModel.id != -1 {  //从销售记录进入
+            
+            if saleRecordModel.isOperate == "1" { // 可保存可删除
+                let item=UIBarButtonItem(title: "保存", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(self.saveInfo))
+                self.navigationItem.rightBarButtonItem=item
+                
+                submitBtn.setTitle("删除", forState:.Normal)
+                submitBtn.backgroundColor = UIColor.redColor()
+                submitBtn.setTitleColor(UIColor.greenColor(), forState: .Highlighted) //触摸状态下文字的颜色
+                submitBtn.addTarget(self, action: #selector(self.deleteRecord), forControlEvents: UIControlEvents.TouchUpInside)
+                self.view.addSubview(submitBtn)
+                submitBtn.snp_makeConstraints { make in
+                    make.bottom.equalTo(self.view.snp_bottom).offset(-30)
+                    make.left.equalTo(self.view.snp_left).offset(50)
+                    make.size.equalTo(CGSizeMake(SCREEN_WIDTH-100, 35))
+                }
+                self.cells = saleRecordModel.getCells()
+            }else {
+                self.cells = saleRecordModel.getReadCells()
+            }
+
+            switchCode(saleRecordModel.credentials)
+            self.customTableView.reloadData()
+        }else { //可保存
             let item=UIBarButtonItem(title: "保存", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(self.saveInfo))
             self.navigationItem.rightBarButtonItem=item
-            getData()
+            self.cells = saleRecordModel.getNoPayTimeCells()
+            self.customTableView.reloadData()
         }
     }
     
-    func getData(){
-        var parameters = [String : AnyObject]()
-        parameters["type"] = TYPE_CODE
-        parameters["sxsRecord.id"] = recordId
-        NetworkTool.sharedTools.getRecordInfo(parameters) { (data, error) in
-            if error == nil{
-                self.saleRecordModel = data
-                self.cells = self.saleRecordModel.getCells()
-                self.customTableView.reloadData()
-                }else{
-                if error == NOTICE_SECURITY_NAME {
-                    self.toLogin()
-                }else{
-                    self.showHint(error, duration: 2.0, yOffset: 2.0)
-                }
-            }
+    func switchCode(credentials:String){
+        switch credentials {
+        case "DRIVING_LICENSE":
+            self.saleRecordModel.credentialsName = "驾驶证" //被输出
+            self.startIndex = 2
+        case "PASSPORT":
+            self.saleRecordModel.credentialsName = "护照"
+            self.startIndex = 0
+        default:
+            self.saleRecordModel.credentialsName = "身份证"
+            self.startIndex = 1
         }
     }
     
     func deleteRecord(){
-        var parameters = [String : AnyObject]()
-        parameters["sxsRecord.id"] = String(recordId)
-        parameters["type"] = TYPE_CODE
-        NetworkTool.sharedTools.deleteSaleRecord(parameters) { (data, error) in
-            if error == nil{
-                self.lastNavigationPage()
-            }else{
-                if error == NOTICE_SECURITY_NAME {
-                    self.toLogin()
+        self.alertNotice("提示", message: "是否删除？") {
+            var parameters = [String : AnyObject]()
+            parameters["sxsRecord.id"] = String(self.recordId)
+            parameters["type"] = TYPE_CODE
+            NetworkTool.sharedTools.deleteSaleRecord(parameters) { (data, error) in
+                if error == nil{
+                    self.lastNavigationPage()
                 }else{
-                    self.showHint(error, duration: 2.0, yOffset: 2.0)
+                    if error == NOTICE_SECURITY_NAME {
+                        self.toLogin()
+                    }else{
+                        self.showHint(error, duration: 2.0, yOffset: 2.0)
+                    }
                 }
             }
+            
         }
+        
     }
     
     func passParams(text: String,key:String,indexPaths: [NSIndexPath]) {
         saleRecordModel.setValue(text, forKey: key)
-        self.cells = self.saleRecordModel.getCells()
+        if saleRecordModel.id != -1 {
+            self.cells = self.saleRecordModel.getCells()
+        }else{
+            self.cells = saleRecordModel.getNoPayTimeCells()
+        }
         self.customTableView.reloadRowsAtIndexPaths(indexPaths, withRowAnimation: .None)
     }
     
@@ -96,6 +111,10 @@ class RealNameRegController: BaseViewController, UITableViewDelegate, UITableVie
         if (customTableView.indexPathForSelectedRow != nil) {
             customTableView.deselectRowAtIndexPath(customTableView.indexPathForSelectedRow!, animated: true)
         }
+//        self.navigationController?.navigationBar
+//            .setBackgroundImage(UIImage(named: "head_transparent"), forBarMetrics: .Default)
+//        //设置navigationBar  黑线背景
+//        self.navigationController?.navigationBar.shadowImage = UIImage(named: "head_transparent")
     }
     
     //返回几节(组)
@@ -141,7 +160,9 @@ class RealNameRegController: BaseViewController, UITableViewDelegate, UITableVie
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
+        if (customTableView.indexPathForSelectedRow != nil) {
+            customTableView.deselectRowAtIndexPath(customTableView.indexPathForSelectedRow!, animated: true)
+        }
         let cell = self.cells![indexPath.section]![indexPath.row]
         switch cell.state {
         case CellState.READ:
@@ -155,34 +176,38 @@ class RealNameRegController: BaseViewController, UITableViewDelegate, UITableVie
             controller.indexPaths = [indexPath]
             controller.cell = cell
             controller.delegate = self
+            controller.cardNum = self.startIndex
             self.navigationController?.pushViewController(controller, animated: true)
         case .MULTI_TEXT:
-            self.showHint("test", duration: 1, yOffset: 1)
+            let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("BaseMultiTextController") as! BaseMultiTextController
+            controller.indexPaths = [indexPath]
+            controller.cell = cell
+            controller.delegate = self
+            self.navigationController?.pushViewController(controller, animated: true)
         }
     }
     
-    
+    var startIndex:Int = 1  // 0 护照  1：身份证  2：驾驶证
     func choiceCreType(indexPaths: [NSIndexPath]){
-        UsefulPickerView.showSingleColPicker("请选择", data: singleData, defaultSelectedIndex: 1) {[unowned self] (selectedIndex, selectedValue) in
+        UsefulPickerView.showSingleColPicker("请选择", data: singleData, defaultSelectedIndex: startIndex) {[unowned self] (selectedIndex, selectedValue) in
             if selectedValue == "护照"{
-                self.kMaxLength = 7
-                self.credentialType = "PASSPROT"
+                self.credentialType = "PASSPORT"
+                self.startIndex = 0
             }else if selectedValue == "身份证"{
                 self.credentialType = "ID_CARD"
+                self.startIndex = 1
             }else{
-                self.credentialType = "DRMING_LICENSE"
+                self.credentialType = "DRIVING_LICENSE"
+                self.startIndex = 2
             }
             
-            self.saleRecordModel.credentials = self.credentialType
-            switch self.credentialType {
-            case "DRMING_LICENSE":
-                self.saleRecordModel.credentialsName = "驾照" //被输出
-            case "PASSPROT":
-                self.saleRecordModel.credentialsName = "护照"
-            default:
-                self.saleRecordModel.credentialsName = "身份证"
+             self.saleRecordModel.credentials = self.credentialType
+              self.switchCode(self.saleRecordModel.credentials)
+            if self.saleRecordModel.id != -1 {
+                self.cells = self.saleRecordModel.getCells()
+            }else{
+                self.cells = self.saleRecordModel.getNoPayTimeCells()
             }
-            self.cells = self.saleRecordModel.getCells()
             self.customTableView.reloadRowsAtIndexPaths(indexPaths, withRowAnimation: .None)
             
         }
@@ -196,7 +221,7 @@ class RealNameRegController: BaseViewController, UITableViewDelegate, UITableVie
     func getTableView() -> UITableView{
         
         if customTableView == nil{
-            customTableView = UITableView(frame: CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT), style: UITableViewStyle.Plain)
+            customTableView = UITableView(frame: CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT), style: UITableViewStyle.Plain)
             let nib = UINib(nibName: ReuseIdentifier,bundle: nil)
             self.customTableView.registerNib(nib, forCellReuseIdentifier: ReuseIdentifier)
             customTableView?.delegate = self
@@ -237,29 +262,23 @@ class RealNameRegController: BaseViewController, UITableViewDelegate, UITableVie
                 //self.tfDocumentNum.becomeFirstResponder()
             })
             return
-        }else{
-            if strDocumentNum.characters.count < kMaxLength {
-                alert("证件号码填写错误，请重新填写!", handler: {
-                   // self.tfDocumentNum.becomeFirstResponder()
+        }
+        
+        //护照
+        if startIndex == 0 {
+            if strDocumentNum.characters.count>9 || strDocumentNum.characters.count<7   {
+                alert("护照长度为7-9位，请正确填写！")
+                return
+            }
+        }else {//身份证，驾照
+            if !ValidateEnum.cardNum(strDocumentNum).isRight {
+                alert("证件号码格式错误，请重新输入!", handler: {
+                    
                 })
                 return
             }
         }
-        
-        if AppTools.isEmpty(strPhone) {
-            alert("联系电话不可为空!", handler: {
-                //self.tfPhone.becomeFirstResponder()
-            })
-            return
-        }
-        
-        
-        if !ValidateEnum.phoneNum(strPhone).isRight {
-            alert("电话格式错误，请重新输入!", handler: {
-                //self.tfPhone.becomeFirstResponder()
-            })
-            return
-        }
+
         
         if AppTools.isEmpty(strProductName) {
             alert("品名不可为空!", handler: {
@@ -274,8 +293,8 @@ class RealNameRegController: BaseViewController, UITableViewDelegate, UITableVie
             return
         }
         var parameters = [String : AnyObject]()
-        if recordId != -1 {
-            parameters["sxsRecord.id"] = recordId
+        if saleRecordModel.id != -1 {
+            parameters["sxsRecord.id"] = saleRecordModel.id
         }
         parameters["type"] = TYPE_CODE
         parameters["sxsRecord.credentials"] = saleRecordModel.credentials
@@ -287,6 +306,9 @@ class RealNameRegController: BaseViewController, UITableViewDelegate, UITableVie
         parameters["sxsRecord.productName"] = strProductName//品名
         parameters["sxsRecord.productNumber"] = strNum//松香水的数量(升)
         parameters["sxsRecord.content"] = strPurpose//用途
+        if saleRecordModel.payTime != "" {
+          parameters["sxsRecord.payTime"] = saleRecordModel.payTime//用途
+        }
         
         
         NetworkTool.sharedTools.saveInfo(parameters) { (login, error) in

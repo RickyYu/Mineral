@@ -11,18 +11,18 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kRF-9Q-j5q" id="jrm-8e-QGe">
-                <rect key="frame" x="0.0" y="0.0" width="287" height="59.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="287" height="59"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="hZW-yo-saS">
-                        <rect key="frame" x="33" y="8" width="217" height="21"/>
+                        <rect key="frame" x="30" y="8" width="217" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="DOU-1m-fXe">
-                        <rect key="frame" x="33" y="35" width="180" height="21"/>
+                        <rect key="frame" x="30" y="35" width="180" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" red="0.53702014593908631" green="0.53702014593908631" blue="0.53702014593908631" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

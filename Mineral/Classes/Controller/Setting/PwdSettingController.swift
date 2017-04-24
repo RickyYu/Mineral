@@ -17,7 +17,7 @@ class PwdSettingController: BaseViewController,UITableViewDelegate, UITableViewD
     var submitBtn = UIButton()
     var cells: Dictionary<Int, [Cell]>? = [:]
     override func viewDidLoad() {
-        setNavagation("销售实名登记")
+        setNavagation("修改密码")
         customTableView = getTableView()
         self.view.addSubview(customTableView)
         self.cells = pwdSettingModel.getCells()

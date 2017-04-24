@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>BASE_URL_YH</key>
-	<string>http://192.168.2.224:8005/nbsxs</string>
+	<string>http://60.190.2.247:7003/nbsxs</string>
 	<key>LOGIN</key>
 	<string>/app/user/login.sj</string>
 	<key>DELETE_SALE_RECORD</key>

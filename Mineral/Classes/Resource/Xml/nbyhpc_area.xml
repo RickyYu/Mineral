@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <first-area name="宁波市" code="330200000000">
-	<second-area name="余姚" code="330281000000">
+	<second-area name="余姚市" code="330281000000">
 		<third-area name="凤山街道" code="330281001000">
 			<fouth-area name="阳明东路" code="330281001007"/>
 			<fouth-area name="永丰" code="330281001200"/>
@@ -392,7 +392,7 @@
 		</third-area>
 		
 	</second-area>
-	<second-area name="慈溪" code="330282000000">
+	<second-area name="慈溪市" code="330282000000">
 		<third-area name="浒山街道" code="330282001000">
 			<fouth-area name="三碰桥" code="330282001001"/>
 			<fouth-area name="上叶家" code="330282001002"/>
@@ -806,7 +806,7 @@
 		<third-area name="市商品市场物流园区管委会" code="330282405000"/>
 				
 	</second-area>
-	<second-area name="奉化" code="330210000000">
+	<second-area name="奉化市" code="330210000000">
 		<third-area name="锦屏街道" code="330210001000">
 			<fouth-area name="庄山" code="330210001003"/>
 			<fouth-area name="春晖" code="330210001004"/>
@@ -1237,7 +1237,7 @@
 		<third-area name="阳光海湾开发建设指挥部" code="330210402000" />
 		
 	</second-area>
-	<second-area name="宁海" code="330226000000">
+	<second-area name="宁海县" code="330226000000">
 		<third-area name="跃龙街道" code="330226001000">
 			<fouth-area name="五丰" code="330226001001"/>
 			<fouth-area name="车河" code="330226001002"/>
@@ -1700,7 +1700,7 @@
 		<third-area name="物流园区" code="330226402000" />
 		
 	</second-area>
-	<second-area name="象山" code="330225000000">
+	<second-area name="象山县" code="330225000000">
 		<third-area name="丹东街道" code="330225001000">
 			<fouth-area name="公园" code="330225001001"/>
 			<fouth-area name="东街" code="330225001002"/>
@@ -2317,7 +2317,7 @@
 		<third-area name="宁波影视文化产业区管委会" code="330225404000" />
 		
 	</second-area>
-	<second-area name="鄞州" code="330212000000">
+	<second-area name="鄞州区" code="330212000000">
 		<third-area name="钟公庙街道" code="330212001000">
 			<fouth-area name="钟公庙(社)" code="330212001001"/>
 			<fouth-area name="长丰" code="330212001002"/>
@@ -2999,7 +2999,7 @@
 		<third-area name="南部商务区" code="330212403000" />
 		
 	</second-area>
-	<second-area name="海曙" code="330203000000">
+	<second-area name="海曙区" code="330203000000">
 		<third-area name="月湖街道" code="330203001000">
 			<fouth-area name="县学" code="330203001004"/>
 			<fouth-area name="太阳" code="330203001001"/>
@@ -3326,7 +3326,7 @@
 		</third-area>
 
 	</second-area>
-	<second-area name="江北" code="330205000000">
+	<second-area name="江北区" code="330205000000">
 		<third-area name="中马街道" code="330205001000">
 			<fouth-area name="浮石" code="330205001001"/>
 			<fouth-area name="新马" code="330205001002"/>
@@ -3510,7 +3510,7 @@
 		</third-area>
 		<third-area name="江北区工业区管委会" code="330205400000" />
 	</second-area>
-	<second-area name="镇海" code="330211000000">
+	<second-area name="镇海区" code="330211000000">
 		<third-area name="招宝山街道" code="330211001000">
 			<fouth-area name="城东" code="330211001001"/>
 			<fouth-area name="车站路" code="330211001005"/>
@@ -3611,7 +3611,7 @@
 		</third-area>
 		<third-area name="金属园区" code="330211400000" />
 	</second-area>
-	<second-area name="北仑" code="330206000000">
+	<second-area name="北仑区" code="330206000000">
 		<third-area name="新碶街道" code="330206001000">
 			<fouth-area name="芝兰" code="330206001004"/>
 			<fouth-area name="迎春" code="330206001009"/>
@@ -3888,7 +3888,7 @@
 			<fouth-area name="保税港区" code="330206200400"/>
 		</third-area>
 	</second-area>
-	<second-area name="大榭" code="330213000000">
+	<second-area name="宁波大榭开发区" code="330213000000">
 		<third-area name="大榭街道" code="330213001000">
 			<fouth-area name="海信" code="330213001004"/>
 			<fouth-area name="长墩" code="330213001202"/>
@@ -3910,7 +3910,7 @@
 			<fouth-area name="外马" code="330213001211"/>
 		</third-area>
 	</second-area>
-	<second-area name="高新区" code="330214000000">
+	<second-area name="宁波国家高新区" code="330214000000">
 		<third-area name="新明街道" code="330214001000">
 			<fouth-area name="滨江" code="330214001005"/>
 			<!--<fouth-area name="老庙" code="330214001001"/>-->
@@ -3939,8 +3939,8 @@
             <fouth-area name="贵驷" code="330214003206"/>
 		</third-area>
 	</second-area>
-	<second-area name="保税区" code="330215000000" />
-	<second-area name="东钱湖" code="330216000000">
+	<second-area name="宁波保税区" code="330215000000" />
+	<second-area name="宁波市东钱湖旅游度假区" code="330216000000">
 		<third-area name="东钱湖镇" code="330216100000">
 			<fouth-area name="钱湖丽园" code="330216100003"/>
 			<fouth-area name="大公" code="330216100007"/>
@@ -3994,7 +3994,7 @@
 			<fouth-area name="工业片区4" code="330216400203"/>
 		</third-area>
 	</second-area>
-	<second-area name="杭州湾" code="330217000000">
+	<second-area name="杭州湾新区" code="330217000000">
 		<third-area name="新区" code="330217400000" />
 		<third-area name="庵东镇" code="330217100000">
 			<fouth-area name="振东(社)" code="330217100002"/>
@@ -4025,7 +4025,7 @@
 			<fouth-area name="浦东" code="330217100217"/>		
 		</third-area>
 	</second-area>
-	<second-area name="石化区" code="330218000000" />
-	<second-area name="物流区" code="330219000000" />
+	<second-area name="宁波石化开发区" code="330218000000" />
+	<second-area name="宁波机场与物流园区" code="330219000000" />
 	<second-area name="其他" code="330285000000" />
 </first-area>

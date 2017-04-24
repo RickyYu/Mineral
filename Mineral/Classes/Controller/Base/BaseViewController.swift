@@ -243,10 +243,8 @@ class BaseViewController: UIViewController {
     }
     
     internal func getChoiceArea(areaArr:[String],finished:(area:String,areaArr:[String])->()){
-//        UsefulPickerView.showCitiesPicker("市区镇选择", defaultSelectedValues: areaArr) { (selectedIndexs, selectedValues) in
-//          
-//        }
-        UsefulPickerView.showCitiesPicker("市区镇选择", defaultSelectedValues: areaArr) {[unowned self] (selectedIndexs, selectedValues) in
+        
+        UsefulPickerView.showCitiesPicker("市区镇选择", defaultSelectedValues: areaArr) {(selectedIndexs, selectedValues) in
             // 处理数据
             let combinedString = selectedValues.reduce("", combine: { (result, value) -> String in
                 result + " " + value
@@ -271,7 +269,7 @@ class BaseViewController: UIViewController {
 
     
     //版本更新
-    private func compareVersion(localVersion: String, storeVersion: String) {
+   func compareVersion(localVersion: String, storeVersion: String) {
         if localVersion.compare(storeVersion) == NSComparisonResult.OrderedAscending {
             self.alertNotice("更新可用", message: "\(NSBundle.mainBundle().infoDictionary!["CFBundleDisplayName"])的新版本可用。请立即更新至\(storeVersion)。", handler: {
                 self.gotoAppStore()

@@ -40,7 +40,7 @@ class ShopInfoModel:BaseModel,NSCoding{
         super.init()
         self.firstArea = dict["firstArea"] as? Int
         self.businessRegNum = dict["businessRegNum"] as? String ?? ""
-        self.thirdArea = dict["thirdArea"] as? Int
+        self.thirdArea = dict["thirdArea"] as? Int ?? 0
         self.businessScope = dict["businessScope"] as? String ?? ""
         self.principalPerson = dict["principalPerson"] as? String ?? ""
         self.secondArea = dict["secondArea"] as? Int
@@ -122,16 +122,16 @@ class ShopInfoModel:BaseModel,NSCoding{
     func getCells() -> Dictionary<Int, [Cell]>{
         return [
             0:[
-                Cell(fieldName: "companyName", image: "point", title: "门店名称", value: self.companyName, state: .TEXT,maxLength: 20)
+                Cell(fieldName: "companyName", image: "point", title: "门店名称", value: self.companyName, state: .MULTI_TEXT,maxLength: 50)
             ],
             1:[
-                Cell(fieldName: "businessRegNum", image: "point", title: "工商注册号", value: self.businessRegNum, state: .TEXT,maxLength: 20),
+                Cell(fieldName: "businessRegNum", image: "point", title: "工商注册号", value: self.businessRegNum, state: .READ,maxLength: 20),
                 Cell(fieldName: "principalPerson", image: "point", title: "门店负责人", value: self.principalPerson, state: .TEXT,maxLength: 20),
-                Cell(fieldName: "principalTelephone", image: "point", title: "联系电话", value: self.principalTelephone, state: .TEXT,maxLength: 11),
+                Cell(fieldName: "principalTelephone", image: "point", title: "联系电话", value: self.principalTelephone, state: .TEXT,maxLength: 13),
                 Cell(fieldName: "areaName", image: "point", title: "所属区域", value: self.areaName, state: .AREA, maxLength: 40),
-                Cell(fieldName: "businessAddress", image: "point", title: "门店地址", value: self.businessAddress, state: .TEXT, maxLength: 20),
+                Cell(fieldName: "businessAddress", image: "point", title: "门店地址", value: self.businessAddress, state: .MULTI_TEXT, maxLength: 50),
                 Cell(fieldName: "documentInfo", image: "point", title: "证件信息", value: self.documentInfo, state: .TEXT, maxLength: 20),
-                Cell(fieldName: "businessScope", image: "point", title: "经营范围", value: self.businessScope, state: .TEXT, maxLength: 20),
+                Cell(fieldName: "businessScope", image: "point", title: "经营范围", value: self.businessScope, state: .MULTI_TEXT, maxLength: 200),
               ]
         ]
     }
