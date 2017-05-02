@@ -37,7 +37,6 @@ enum ValidateEnum {
             predicateStr = "^[A-Za-z0-9]{6,20}+$"
             currObject = str
         case let .password(str):
-            
             predicateStr = "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{6,18}$"
 //                "^[a-zA-Z0-9]{6,18}+$"
             currObject = str
