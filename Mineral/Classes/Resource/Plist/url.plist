@@ -2,8 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>BASE_URL_YH</key>
+	<key>BASE_URL_YH-</key>
 	<string>http://60.190.2.247:7003/nbsxs</string>
+	<key>BASE_URL_YH</key>
+	<string>http://192.168.2.154:8080/nbsxs</string>
 	<key>LOGIN</key>
 	<string>/app/user/login.sj</string>
 	<key>DELETE_SALE_RECORD</key>

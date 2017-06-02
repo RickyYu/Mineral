@@ -36,7 +36,6 @@ class RealNameRegController: BaseViewController, UITableViewDelegate, UITableVie
             if saleRecordModel.isOperate == "1" { // 可保存可删除
                 let item=UIBarButtonItem(title: "保存", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(self.saveInfo))
                 self.navigationItem.rightBarButtonItem=item
-                
                 submitBtn.setTitle("删除", forState:.Normal)
                 submitBtn.backgroundColor = UIColor.redColor()
                 submitBtn.setTitleColor(UIColor.greenColor(), forState: .Highlighted) //触摸状态下文字的颜色
@@ -111,10 +110,6 @@ class RealNameRegController: BaseViewController, UITableViewDelegate, UITableVie
         if (customTableView.indexPathForSelectedRow != nil) {
             customTableView.deselectRowAtIndexPath(customTableView.indexPathForSelectedRow!, animated: true)
         }
-//        self.navigationController?.navigationBar
-//            .setBackgroundImage(UIImage(named: "head_transparent"), forBarMetrics: .Default)
-//        //设置navigationBar  黑线背景
-//        self.navigationController?.navigationBar.shadowImage = UIImage(named: "head_transparent")
     }
     
     //返回几节(组)
@@ -249,6 +244,7 @@ class RealNameRegController: BaseViewController, UITableViewDelegate, UITableVie
         let strPhone = saleRecordModel.phone
         let strProductName = saleRecordModel.productName
         let strNum = saleRecordModel.productNumber
+        let companyPerson = saleRecordModel.companyPerson
         let strPurpose = saleRecordModel.content
 
         if AppTools.isEmpty(strName) {
@@ -306,6 +302,7 @@ class RealNameRegController: BaseViewController, UITableViewDelegate, UITableVie
         parameters["sxsRecord.productName"] = strProductName//品名
         parameters["sxsRecord.productNumber"] = strNum//松香水的数量(升)
         parameters["sxsRecord.content"] = strPurpose//用途
+        parameters["sxsRecord.companyPerson"] = companyPerson
         if saleRecordModel.payTime != "" {
           parameters["sxsRecord.payTime"] = saleRecordModel.payTime//用途
         }

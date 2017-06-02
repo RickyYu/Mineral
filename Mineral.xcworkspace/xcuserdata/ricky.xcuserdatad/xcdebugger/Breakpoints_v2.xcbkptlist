@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Mineral/Classes/Controller/RealNameReg/RealNameRegController.swift"
-            timestampString = "514199854.679189"
+            timestampString = "518080058.150036"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "246"
-            endingLineNumber = "246"
+            startingLineNumber = "241"
+            endingLineNumber = "241"
             landmarkName = "saveInfo()"
             landmarkType = "5">
          </BreakpointContent>
@@ -282,11 +282,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Mineral/Classes/Controller/RealNameReg/RealNameRegController.swift"
-            timestampString = "514199854.679189"
+            timestampString = "518080058.150036"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "296"
-            endingLineNumber = "296"
+            startingLineNumber = "292"
+            endingLineNumber = "292"
             landmarkName = "saveInfo()"
             landmarkType = "5">
          </BreakpointContent>
@@ -298,11 +298,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Mineral/Classes/Controller/RealNameReg/RealNameRegController.swift"
-            timestampString = "514192151.080189"
+            timestampString = "518080058.150036"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "55"
-            endingLineNumber = "55"
+            startingLineNumber = "54"
+            endingLineNumber = "54"
             landmarkName = "viewDidLoad()"
             landmarkType = "5">
          </BreakpointContent>
@@ -314,11 +314,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Mineral/Classes/Controller/RealNameReg/RealNameRegController.swift"
-            timestampString = "514192891.051401"
+            timestampString = "518080058.150036"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "67"
-            endingLineNumber = "67"
+            startingLineNumber = "66"
+            endingLineNumber = "66"
             landmarkName = "switchCode(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -330,11 +330,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Mineral/Classes/Controller/RealNameReg/RealNameRegController.swift"
-            timestampString = "514198479.862216"
+            timestampString = "518080058.150036"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "101"
-            endingLineNumber = "101"
+            startingLineNumber = "100"
+            endingLineNumber = "100"
             landmarkName = "passParams(_:key:indexPaths:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -342,15 +342,15 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Mineral/Classes/Controller/RealNameReg/RealNameRegController.swift"
-            timestampString = "514199854.679189"
+            timestampString = "518080058.150036"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "308"
-            endingLineNumber = "308"
+            startingLineNumber = "304"
+            endingLineNumber = "304"
             landmarkName = "saveInfo()"
             landmarkType = "5">
          </BreakpointContent>
@@ -369,38 +369,6 @@
             endingLineNumber = "121"
             landmarkName = "up()"
             landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Mineral.SettingConroller.(up () -&gt; ()).(closure #1)"
-                  moduleName = "Mineral"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ricky/Documents/Mineral/Mineral/Classes/Controller/Setting/SettingConroller.swift"
-                  timestampString = "514431770.520233"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "121"
-                  endingLineNumber = "121"
-                  offsetFromSymbolStart = "95">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Mineral.SettingConroller.(up () -&gt; ()).(closure #1)"
-                  moduleName = "Mineral"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ricky/Documents/Mineral/Mineral/Classes/Controller/Setting/SettingConroller.swift"
-                  timestampString = "514431770.520492"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "121"
-                  endingLineNumber = "121"
-                  offsetFromSymbolStart = "110">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
